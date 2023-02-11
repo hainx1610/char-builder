@@ -55,19 +55,22 @@ function Avatar({ avatarObj }) {
   );
 }
 
-function RandomizeBtn() {
+function RandomizeBtn({ randomize }) {
   return (
-    <button className=" bg-blue-600 text-white hover:cursor-pointer hover:brightness-90">
+    <button
+      className=" bg-blue-600 text-white hover:cursor-pointer hover:brightness-90"
+      onClick={randomize}
+    >
       Randomize
     </button>
   );
 }
 
-function AvatarWrapper({ avatarObj }) {
+function AvatarWrapper({ avatarObj, randomize }) {
   return (
-    <div className="flex flex-col items-center">
+    <div className="fixed top-32 flex w-[100%] flex-col items-center bg-white py-3">
       <Avatar avatarObj={avatarObj} />
-      <RandomizeBtn />
+      <RandomizeBtn randomize={randomize} />
     </div>
   );
 }
@@ -132,7 +135,7 @@ function PartListSection({ listName, number, handleClick }) {
 
 function PartListsArea({ handleClick }) {
   return (
-    <div>
+    <div className=" mt-[450px]">
       {Object.entries(total).map((item, index) => {
         const [listName, number] = item;
 
@@ -172,9 +175,17 @@ function MainArea() {
     setAvatarObj({ ...avatarObj, [subfolder]: [subIndex] });
   };
 
+  const randomize = () => {
+    const tempObj = { ...total };
+    Object.keys(tempObj).forEach((key) => {
+      tempObj[key] = Math.floor(Math.random() * tempObj[key]) + 1;
+    });
+    setAvatarObj(tempObj);
+  };
+
   return (
-    <div>
-      <AvatarWrapper avatarObj={avatarObj} />
+    <div className="flex flex-col items-center">
+      <AvatarWrapper avatarObj={avatarObj} randomize={randomize} />
       <PartListsArea handleClick={handleClick} />
     </div>
   );
@@ -183,8 +194,10 @@ function MainArea() {
 function App() {
   return (
     <div className="flex flex-col items-center">
-      <div className="title text-3xl text-blue-600">CHARACTER</div>
-      <div className="title text-3xl text-blue-600">customization</div>
+      <div className="fixed mx-auto w-[100%] bg-white p-6 text-center text-4xl text-blue-600">
+        CHARACTER <br></br>customization
+      </div>
+
       <MainArea />
     </div>
   );
