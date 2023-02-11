@@ -61,7 +61,7 @@ function RandomizeBtn({ randomize }) {
       className="my-1 rounded-md bg-blue-600 px-1 font-semibold text-white hover:cursor-pointer hover:brightness-90"
       onClick={randomize}
     >
-      Randomize
+      Randomize 🔀
     </button>
   );
 }
@@ -117,7 +117,7 @@ function ItemsList({ listName, number, handleClick }) {
       />
     );
   }
-  return <div className="flex flex-wrap justify-center">{tempArr}</div>;
+  return <div className="flex flex-wrap justify-center py-2">{tempArr}</div>;
 }
 
 function PartListSection({ listName, number, handleClick }) {
