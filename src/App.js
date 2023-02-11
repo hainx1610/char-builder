@@ -20,7 +20,7 @@ const total = {
 
 function Avatar({ avatarObj }) {
   return (
-    <div className="relative h-[280px] w-[260px]">
+    <div className="relative h-[280px] w-[260px] rounded-md  border-2">
       {Object.entries(avatarObj).map((item, index) => {
         const [listName, number] = item;
         let subfolder = listName;
@@ -58,7 +58,7 @@ function Avatar({ avatarObj }) {
 function RandomizeBtn({ randomize }) {
   return (
     <button
-      className=" bg-blue-600 text-white hover:cursor-pointer hover:brightness-90"
+      className="my-1 rounded-md bg-blue-600 px-1 font-semibold text-white hover:cursor-pointer hover:brightness-90"
       onClick={randomize}
     >
       Randomize
@@ -68,7 +68,7 @@ function RandomizeBtn({ randomize }) {
 
 function AvatarWrapper({ avatarObj, randomize }) {
   return (
-    <div className="fixed top-32 flex w-[100%] flex-col items-center bg-white py-3">
+    <div className="fixed top-32 flex w-[100%] flex-col items-center bg-blue-300 py-3 md:ml-2 md:w-auto md:bg-inherit">
       <Avatar avatarObj={avatarObj} />
       <RandomizeBtn randomize={randomize} />
     </div>
@@ -80,8 +80,8 @@ function Square({ subfolder, subIndex, handleClick }) {
     <img
       src={require(`./character/${subfolder}/${subIndex}.png`)}
       alt=""
-      width={"40px"}
-      className=" rounded-sm border bg-blue-200 hover:cursor-pointer hover:brightness-90"
+      // width={"40px"}
+      className=" w-12 rounded-sm border bg-blue-200 hover:cursor-pointer hover:brightness-90 md:w-16"
       onClick={() => handleClick(subfolder, subIndex)}
     />
   );
@@ -122,8 +122,8 @@ function ItemsList({ listName, number, handleClick }) {
 
 function PartListSection({ listName, number, handleClick }) {
   return (
-    <div className="my-8 flex flex-col items-center">
-      <h2>{listName}</h2>
+    <div className="my-8 flex flex-col items-center rounded-md border-2">
+      <h2 className="font-semibold text-white">{listName}</h2>
       <ItemsList
         listName={listName}
         number={number}
@@ -135,7 +135,7 @@ function PartListSection({ listName, number, handleClick }) {
 
 function PartListsArea({ handleClick }) {
   return (
-    <div className=" mt-[450px]">
+    <div className=" m-2 mt-[450px] md:mt-[108px] md:ml-[300px]">
       {Object.entries(total).map((item, index) => {
         const [listName, number] = item;
 
@@ -184,7 +184,7 @@ function MainArea() {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center md:flex-row">
       <AvatarWrapper avatarObj={avatarObj} randomize={randomize} />
       <PartListsArea handleClick={handleClick} />
     </div>
@@ -193,9 +193,9 @@ function MainArea() {
 
 function App() {
   return (
-    <div className="flex flex-col items-center">
-      <div className="fixed mx-auto w-[100%] bg-white p-6 text-center text-4xl text-blue-600">
-        CHARACTER <br></br>customization
+    <div className="flex flex-col items-center bg-gradient-to-r from-cyan-500 to-blue-500">
+      <div className="font fixed mx-auto w-[100%] bg-blue-800 p-6 text-center font-sans text-4xl font-semibold text-white underline decoration-sky-500">
+        CHARACTER <br></br>⚙ customization ⚙
       </div>
 
       <MainArea />
